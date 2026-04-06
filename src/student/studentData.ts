@@ -1,0 +1,42 @@
+export const STUDENTS = [
+        {
+            id: 1,
+            name: "Aarav Sharma",
+            age: 20,
+            gender: "Male",
+            course: "Computer Science",
+            year: 3,
+        },
+        {
+            id: 2,
+            name: "Priya Verma",
+            age: 21,
+            gender: "Female",
+            course: "Information Technology",
+            year: 4,
+        },
+        {
+            id: 3,
+            name: "Rohan Patel",
+            age: 19,
+            gender: "Male",
+            course: "Electronics",
+            year: 2,
+        },
+        {
+            id: 4,
+            name: "Sneha Joshi",
+            age: 22,
+            gender: "Female",
+            course: "Mechanical",
+            year: 4,
+        },
+        {
+            id: 5,
+            name: "Kunal Singh",
+            age: 20,
+            gender: "Male",
+            course: "Civil",
+            year: 3,
+        }
+    ];
