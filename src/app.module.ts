@@ -10,6 +10,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { StudentMongoModule } from './student-mongo/student-mongo.module';
 import { LibraryModule } from './library/library.module';
+import { ProjectModule } from './project/project.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { LibraryModule } from './library/library.module';
     CustomerModule,
     StudentMongoModule,
     LibraryModule,
+    ProjectModule,
   ],
   controllers: [AppController, DatabaseController],
   providers: [AppService, DatabaseService],

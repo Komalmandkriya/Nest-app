@@ -1,4 +1,15 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Get, Post } from '@nestjs/common';
+import { LibraryService } from './library.service';
 
 @Controller('library')
-export class LibraryController {}
+export class LibraryController {
+  constructor(private readonly libraryService: LibraryService) {}
+  @Post()
+  createLibrary() {
+    return this.libraryService.createLibrary();
+  }
+  @Get()
+  getAllLibraries() {
+    return this.libraryService.getLibraries();
+  }
+}
