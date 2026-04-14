@@ -1,5 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { STUDENTS } from './studentData';
+import { ConfigService } from '@nestjs/config';
 export interface StudentType {
   name: string;
   age: number;
@@ -9,9 +10,12 @@ export interface StudentType {
 }
 @Injectable()
 export class StudentService {
+  constructor(private configService: ConfigService) {}
   private students = STUDENTS;
   // get all
   getAllStudents() {
+    console.log(this.configService.get('MONGO_URI'));
+    console.log(this.configService.get('JWT_SECRET'));
     return this.students;
   }
   // getById
