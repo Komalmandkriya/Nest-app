@@ -11,6 +11,8 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { StudentMongoModule } from './student-mongo/student-mongo.module';
 import { LibraryModule } from './library/library.module';
 import { ProjectModule } from './project/project.module';
+import { PgUserModule } from './pg-user/pg-user.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
   imports: [
@@ -23,11 +25,18 @@ import { ProjectModule } from './project/project.module';
       }),
     }),
 
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      url: process.env.database_Url,
+      autoLoadEntities: true,
+      synchronize: true,
+    }),
     StudentModule,
     CustomerModule,
     StudentMongoModule,
     LibraryModule,
     ProjectModule,
+    PgUserModule,
   ],
   controllers: [AppController, DatabaseController],
   providers: [AppService, DatabaseService],
