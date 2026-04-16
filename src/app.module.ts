@@ -13,10 +13,11 @@ import { LibraryModule } from './library/library.module';
 import { ProjectModule } from './project/project.module';
 import { PgUserModule } from './pg-user/pg-user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({ isGlobal: true }),
+    ConfigModule.forRoot({ isGlobal: true }), //for accessing env
 
     MongooseModule.forRootAsync({
       inject: [ConfigService],
@@ -37,6 +38,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     LibraryModule,
     ProjectModule,
     PgUserModule,
+    AuthModule,
   ],
   controllers: [AppController, DatabaseController],
   providers: [AppService, DatabaseService],
