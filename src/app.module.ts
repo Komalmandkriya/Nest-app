@@ -14,11 +14,22 @@ import { ProjectModule } from './project/project.module';
 import { PgUserModule } from './pg-user/pg-user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
+import { GraphqlBookModule } from './graphql-book/graphql-book.module';
+import { GraphQLModule } from '@nestjs/graphql';
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { join } from 'path';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }), //for accessing env
-
+    // for connecting to gql server
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      driver: ApolloDriver,
+      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+      sortSchema: true,
+      playground: true,
+    }),
+    // for connecting to mongoDB
     MongooseModule.forRootAsync({
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
@@ -39,6 +50,7 @@ import { AuthModule } from './auth/auth.module';
     ProjectModule,
     PgUserModule,
     AuthModule,
+    GraphqlBookModule,
   ],
   controllers: [AppController, DatabaseController],
   providers: [AppService, DatabaseService],
